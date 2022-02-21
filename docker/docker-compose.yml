@@ -1,0 +1,19 @@
+version: "3.2"
+services:
+  # 服务名称，可以自定义
+  helloworld:
+    # 容器名称，可以自定义
+    container_name: helloworld
+    # 指定Dockerfile所在的目录
+    build: ./helloworld
+    ports:
+      - "8080:8080"
+    depends_on:
+      - myredis
+  myredis:
+    container_name: redis
+    image: "redis:latest"
+    ports:
+      - "6379:6379"
+    volumes:
+      - ./redis:/etc/redis  
